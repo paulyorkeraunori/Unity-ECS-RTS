@@ -13,11 +13,19 @@ public class PlayerInputSystem : JobComponentSystem
     {
         public bool leftClick;
         public bool rightClick;
-        
+        public bool left;
+        public bool up;
+        public bool down;
+        public bool right;
+
         public void Execute(ref PlayerInput input)
         {
             input.LeftClick = leftClick;
             input.RightClick = rightClick;
+            input.Left = left;
+            input.Right = right;
+            input.Up = up;
+            input.Down = down;
         }
     }
 
@@ -28,6 +36,10 @@ public class PlayerInputSystem : JobComponentSystem
         {
             leftClick = Input.GetMouseButtonDown(0),
             rightClick = Input.GetMouseButtonDown(1),
+            left = Input.GetKey(KeyCode.A),
+            right = Input.GetKey(KeyCode.D),
+            up = Input.GetKey(KeyCode.W),
+            down = Input.GetKey(KeyCode.S),
         };
         return job.Schedule(this, inputDeps);
     }
